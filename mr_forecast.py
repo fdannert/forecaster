@@ -59,11 +59,11 @@ def Mpost2R(mass, unit='Earth', classify='No'):
 	elif unit == 'Jupiter':
 		mass = mass * mearth2mjup
 	else:
-		print "Input unit must be 'Earth' or 'Jupiter'. Using 'Earth' as default."
+		print("Input unit must be 'Earth' or 'Jupiter'. Using 'Earth' as default.")
 
 	# mass range
 	if np.min(mass) < 3e-4 or np.max(mass) > 3e5:
-		print 'Mass range out of model expectation. Returning None.'
+		print('Mass range out of model expectation. Returning None.')
 		return None
 
 	## convert to radius
@@ -124,7 +124,7 @@ def Mstat2R(mean, std, unit='Earth', sample_size=1000, classify = 'No'):
 		mean = mean * mearth2mjup
 		std = std * mearth2mjup
 	else:
-		print "Input unit must be 'Earth' or 'Jupiter'. Using 'Earth' as default."
+		print("Input unit must be 'Earth' or 'Jupiter'. Using 'Earth' as default.")
 
 	# draw samples
 	mass = truncnorm.rvs( (mlower-mean)/std, (mupper-mean)/std, loc=mean, scale=std, size=sample_size)	
@@ -175,19 +175,18 @@ def Rpost2M(radius, unit='Earth', grid_size = 1e3, classify = 'No'):
 	elif unit == 'Jupiter':
 		radius = radius * rearth2rjup
 	else:
-		print "Input unit must be 'Earth' or 'Jupiter'. Using 'Earth' as default."
-
+		print("Input unit must be 'Earth' or 'Jupiter'. Using 'Earth' as default.")
 
 	# radius range
 	if np.min(radius) < 1e-1 or np.max(radius) > 1e2:
-		print 'Radius range out of model expectation. Returning None.'
+		print('Radius range out of model expectation. Returning None.')
 		return None
 
 
 
 	# sample_grid
 	if grid_size < 10:
-		print 'The sample grid is too sparse. Using 10 sample grid instead.'
+		print('The sample grid is too sparse. Using 10 sample grid instead.')
 		grid_size = 10
 
 	## convert to mass
@@ -250,7 +249,7 @@ def Rstat2M(mean, std, unit='Earth', sample_size=1e3, grid_size=1e3, classify = 
 		mean = mean * rearth2rjup
 		std = std * rearth2rjup
 	else:
-		print "Input unit must be 'Earth' or 'Jupiter'. Using 'Earth' as default."
+		print("Input unit must be 'Earth' or 'Jupiter'. Using 'Earth' as default.")
 
 	# draw samples
 	radius = truncnorm.rvs( (0.-mean)/std, np.inf, loc=mean, scale=std, size=sample_size)	
