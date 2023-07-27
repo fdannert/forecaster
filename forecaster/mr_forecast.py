@@ -1,7 +1,11 @@
+from os import path
+
 import numpy as np
 from scipy.stats import norm
 from scipy.stats import truncnorm 
-import h5py 
+import h5py
+
+from forecaster.func import piece_linear, ProbRGivenM, classification
 
 ## constant
 mearth2mjup = 317.828
@@ -17,13 +21,11 @@ mupper = 3e5
 n_pop = 4
 
 ## read parameter file
-hyper_file = '/forecaster/fitting_parameters.h5'
+
+hyper_file = path.join(path.dirname(__file__), 'fitting_parameters.h5')
 h5 = h5py.File(hyper_file, 'r')
 all_hyper = h5['hyper_posterior'][:]
 h5.close()
-
-## function
-from func import piece_linear, ProbRGivenM, classification
 
 ##############################################
 
